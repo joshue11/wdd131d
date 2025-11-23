@@ -1,8 +1,4 @@
-// filtered-temples.js
-// dynamically creates temple cards, implements filters, lazy loading, footer dates
-
 document.addEventListener("DOMContentLoaded", () => {
-  // temples array: 7 sample + 3 added = 10 entries
   const temples = [
     {
       name: "Salt Lake Temple",
@@ -60,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       area: 17000,
       image: "https://via.placeholder.com/800x450.webp?text=St+George+Temple"
     },
-    // --- 3 student-added temples below ---
     {
       name: "Madrid Spain Temple",
       location: "Alcobendas, Madrid, Spain",
@@ -87,24 +82,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  // DOM elements
   const cardsContainer = document.getElementById("cards");
   const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
   const yearEl = document.getElementById("year");
   const lastModifiedEl = document.getElementById("lastModified");
 
-  // helper: create a single card element
   function createCard(t) {
     const article = document.createElement("article");
     article.className = "card";
 
-    // media (image)
     const media = document.createElement("div");
     media.className = "media";
     const img = document.createElement("img");
     img.setAttribute("src", t.image);
     img.setAttribute("alt", t.name);
-    img.setAttribute("loading", "lazy"); // native lazy loading
+    img.setAttribute("loading", "lazy"); 
     img.setAttribute("decoding", "async");
     media.appendChild(img);
 
@@ -137,9 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return article;
   }
 
-  // render many cards
   function renderCards(list) {
-    cardsContainer.innerHTML = ""; // clear
+    cardsContainer.innerHTML = ""; 
     if (!list || list.length === 0) {
       const note = document.createElement("p");
       note.textContent = "No temples match this filter.";
@@ -153,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsContainer.appendChild(fragment);
   }
 
-  // filters
   function filterHome() {
     renderCards(temples);
   }
@@ -170,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCards(temples.filter(t => t.area < 10000));
   }
 
-  // wire up buttons
   function setActiveButton(activeBtn) {
     filterButtons.forEach(btn => {
       btn.setAttribute("aria-pressed", "false");
@@ -190,10 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // initial render: home
   filterHome();
 
-  // footer dates
+  yearEl.textContent = new Date().getFullYear();
+  lastModifiedEl.textContent = `Last modified: ${document.lastModified || "N/A"}`;
+});
+
   yearEl.textContent = new Date().getFullYear();
   lastModifiedEl.textContent = `Last modified: ${document.lastModified || "N/A"}`;
 });
