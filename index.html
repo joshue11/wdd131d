@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Filtered list of temples demo - lazy loading and interactive filters" />
+  <meta name="author" content="Joshue Murillo" />
+  <title>Filtered Temples — WDD131</title>
+
+  <link rel="stylesheet" href="styles/filtered-temples.css" />
+  <script defer src="scripts/filtered-temples.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 id="page-title">Temple Photo Album</h1>
+      <p class="tagline">Click filters to show different temple groups. Images use lazy loading.</p>
+      <nav aria-label="Primary">
+        <ul class="filter-list" role="menubar">
+          <li><button data-filter="home" class="filter-btn" aria-pressed="true">Home</button></li>
+          <li><button data-filter="old" class="filter-btn">Old</button></li>
+          <li><button data-filter="new" class="filter-btn">New</button></li>
+          <li><button data-filter="large" class="filter-btn">Large</button></li>
+          <li><button data-filter="small" class="filter-btn">Small</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="cards" class="cards" aria-live="polite" aria-label="Temple cards">
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <p>&copy; <span id="year"></span> Joshue Murillo</p>
+      <p id="lastModified"></p>
+    </div>
+  </footer>
+</body>
+</html>
 
